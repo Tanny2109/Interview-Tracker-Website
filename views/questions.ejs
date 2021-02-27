@@ -1,0 +1,56 @@
+<%- include('partials/header'); -%>
+    <h2>
+        <%=data.toUpperCase()%>
+    </h2>
+    </br>
+    <div class="temp">
+        <% if (questions.length> 0) { %>
+            <ul>
+                <% questions.forEach(question=> { %>
+                    <a class="single" href=<%=question.link %>>
+                        <li>
+                            <h3>
+                                <%=question.name %>
+                            </h3>
+                        </li>
+                    </a>
+                    <% }) %>
+            </ul>
+            <% } else { %>
+                <p>There are no questions to display...</p>
+                <% } %>
+    </div>
+    <button onclick="document.getElementById('id01').style.display='block'" class="btn">CREATE NEW QUESTION</button>
+
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">&times;</span>
+        <form class="modal-content" method="POST">
+            <div class="container">
+                <h2>Add new Question</h2>
+                <label for="name">Question name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="link">Question link:</label>
+                <input type="text" id="link" name="link" required>
+                <!-- <label for="topic">Topic:</label>
+                <input type="text" id="topic" name="topic" required> -->
+                <!-- <div class="clearfix"> -->
+                <!-- <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                        class="btn">Cancel</button> -->
+                <button type="submit" class="btn">CREATE</button>
+                <!-- </div> -->
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+<%- include('partials/footer'); -%>

@@ -1,0 +1,24 @@
+<%- include('partials/header'); -%>
+
+    <p>
+    <h2>All Topics</h2>
+    </p>
+    </br>
+    <div class="temp">
+        <% if (topics.length> 0) { %>
+            <ul>
+                <% topics.forEach(topic=> { %>
+                    <a class="single" href="/topics/<%= topic._id %>">
+                        <li>
+                            <h3>
+                                <%= topic.name %>
+                            </h3>
+                        </li>
+                    </a>
+                    <% }) %>
+            </ul>
+            <% } else { %>
+                <p>There are no topics to display...</p>
+                <% } %>
+    </div>
+<%- include('partials/footer'); -%>

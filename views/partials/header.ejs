@@ -12,9 +12,15 @@
     <ul>
       <li><a href="/">Home</a></li>
       <% if(user) { %>
-      <li>Welcome,<%= user.name %></li>
-      <li><a href="/logout">Log-Out</a></li>
-      <% } else { %>
+      <!-- <li><a href="/userUpdation" class="button"></a>,<%= user.name %></li>
+      <li><a href="/logout">Log-Out</a></li> -->
+      <% if (user.name){ %>
+        <li><a href="/userUpdation" class="button">Hi <%= user.name%></a></li>
+        <li><a href="/logout">Log out</a></li>
+        <% } else {%>
+          <li><a href="/userUpdation" class="button">Hi <%= user.email%></a></li>
+          <li><a href="/logout">Log out</a></li>
+      <% } } else { %>
       <li><a href="/login">Log-In</a></li>
       <li><a href="/signup" class="btn">Sign-Up</a></li>
       <% } %> 

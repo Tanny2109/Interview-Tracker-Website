@@ -49,9 +49,23 @@ app.get('*',checkUser);
 app.get('/', (req, res) => res.render('home'));
 app.get('/admin', reqAdminAuth);
 app.get('/smoothies', requireAuth ,(req, res) => res.render('smoothies'));
-app.get('/topics', requireAuth);
-app.use('/topics',topicRoutes);
+//app.get('/topics', requireAuth);
+//app.get('/userUpdation',requireAuth, authController.user_updation_get);
+app.use('/topics', requireAuth, topicRoutes);
+app.get('/topics/:id', requireAuth, authController.get_question_by_topicsName);
+app.get('/questions/:name', requireAuth, authController.get_question_by_name);
+app.get('/form', requireAuth, authController.form_get);
+app.post('/form', requireAuth, authController.form_post);
+app.get('/interviews', requireAuth, authController.interview_get);
+app.get('/temp',requireAuth, (req, res) => res.render('temp'));
 app.use(authRoutes);
 
 
-//cookies
+//Interview page routes
+app.get('/add_experience', requireAuth, authController.add_experience);
+app.get('/interviews/:name', requireAuth, authController.show_experience);
+app.post('/add_experience', requireAuth, authController.add_experience_post);
+app.get('/:name/:id', requireAuth, authController.get_full_story);
+
+const userController = require('./controllers/userController');
+app.use(userController);
